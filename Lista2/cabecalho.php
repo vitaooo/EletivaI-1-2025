@@ -30,6 +30,9 @@
                             <li><a class="dropdown-item" href="ex5.php">ex5</a></li>
                             <li><a class="dropdown-item" href="ex6.php">ex6</a></li>
                             <li><a class="dropdown-item" href="ex7.php">ex7</a></li>
+                            <li><a class="dropdown-item" href="ex8.php">ex7</a></li>
+                            <li><a class="dropdown-item" href="ex9.php">ex7</a></li>
+                            <li><a class="dropdown-item" href="ex10.php">ex7</a></li>
                         </ul>
                     </li>
                 </ul>

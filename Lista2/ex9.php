@@ -1,7 +1,6 @@
 <?php
 
 include("cabecalho.php");
-echo "Exercício 6";
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -15,10 +14,10 @@ echo "Exercício 6";
 
 <body>
     <div class="container py-3">
-        <h1></h1>
+        <h1>Exercício 9 php</h1>
         <form method="post">
             <div class="mb-3">
-                <label for="numero" class="form-label">Digite o valor do produto</label>
+                <label for="numero" class="form-label">Informe um número</label>
                 <input type="number" id="numero" name="numero" class="form-control" required="">
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
@@ -28,14 +27,17 @@ echo "Exercício 6";
 </body>
 
 </html>
+
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $n = $_POST['numero'];
-    $i = 1;
-    while ($i <= $n){
-        echo "<h2>$i</h2>";
-        $i++;
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $numero = $_POST['numero'];
+        $fatorial = $numero;
+        for($i = $numero -1; $i>1; $i--){
+            $fatorial = $fatorial * $i;
+        }
+    echo "O fatorial do número $numero é $fatorial !";
     }
-}
+
+
 include("rodape.php");
-?>

@@ -1,7 +1,7 @@
 <?php
 include("cabecalho.php");
 
-    echo "<h1>Exercício 1</h1>";
+echo "<h1>Exercício 1</h1>";
 ?>
 
 <form method="post">
@@ -38,23 +38,48 @@ include("cabecalho.php");
 </form>
 
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    $n1 = $_POST['n1'];
+    $n2 = $_POST['n2'];
+    $n3 = $_POST['n3'];
+    $n4 = $_POST['n4'];
+    $n5 = $_POST['n5'];
+    $n6 = $_POST['n6'];
+    $n7 = $_POST['n7'];
+    $menor = $n1;
+    $posicao = 1;
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        $n1 = $_POST['n1'];
-        $n2 = $_POST['n2'];
-        $n3 = $_POST['n3'];
-        $n4 = $_POST['n4'];
-        $n5 = $_POST['n5'];
-        $n6 = $_POST['n6'];
-        $n7 = $_POST['n7'];
-        $numeros = array();
-
-        for($i = $n1; $i < 7; $i++){
-            array_push($numeros = array($i));
-        }
-        echo $numeros;
-        //echo "<p>O menor número é $menorvalor e a posição dele é: $posicao</p>";
+    if ($n2 < $menor) {
+        $menor = $n2;
+        $posicao = 2;
     }
+
+    if ($n3 < $menor) {
+        $menor = $n3;
+        $posicao = 3;
+    }
+
+    if ($n4 < $menor) {
+        $menor = $n4;
+        $posicao = 4;
+    }
+
+    if ($n5 < $menor) {
+        $menor = $n5;
+        $posicao = 5;
+    }
+
+    if ($n6 < $menor) {
+        $menor = $n6;
+        $posicao = 6;
+    }
+
+    if ($n7 < $menor) {
+        $menor = $n7;
+        $posicao = 7;
+    }
+
+    echo "<p>O menor número é $menor e está na posição $posicao </p>";
+}
 include("rodape.php");
