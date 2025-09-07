@@ -31,10 +31,9 @@ echo "Exercício 6";
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $n = $_POST['numero'];
-    $i = 1;
-    while ($i <= $n){
-        echo "<h2>$i</h2>";
-        $i++;
+    for($i = 1; $i <= 10; $i++){
+        $tabuada = $i * $n;
+        echo "<p>$n vezes $i é $tabuada</p>";
     }
 }
 include("rodape.php");

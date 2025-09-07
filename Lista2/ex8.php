@@ -32,10 +32,10 @@ echo "Exercício 6";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $n = $_POST['numero'];
     $i = 1;
-    while ($i <= $n){
-        echo "<h2>$i</h2>";
-        $i++;
-    }
+    do{
+        echo "<h2>$n</h2>";
+        $n--;
+    } while($n >= 1);
 }
 include("rodape.php");
 ?>
