@@ -28,6 +28,7 @@
                             <li><a class="dropdown-item" href="ex3.php">ex3</a></li>
                             <li><a class="dropdown-item" href="ex4.php">ex4</a></li>
                             <li><a class="dropdown-item" href="ex5.php">ex5</a></li>
+                            <li><a class="dropdown-item" href="ex6.php">ex6</a></li>
                         </ul>
                     </li>
                 </ul>
