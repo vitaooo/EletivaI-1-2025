@@ -14,7 +14,8 @@
     $vetor[4] = 6;
     echo "<p>Novo valor da posição 4: ".$vetor[4]."</p>";
 
-    $vetor['nome'] = "Victor";
+    $v = "nome";
+    $vetor[$v] = "Victor";
     print_r($vetor);
     echo "<p>".$vetor['nome']."</p>";
 
