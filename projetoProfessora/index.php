@@ -17,8 +17,18 @@
 
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 22rem;">
-      <h3 class="text-center mb-4">Acesso ao Sistema</h3>
-      <form>
+      <?php
+        if(isset($_GET['cadastro'])){
+          $cadastro = $_GET['cadastro'];
+          if($cadastro){
+            echo "<p class='text-success'>Cadastro realizado com sucesso!</p>";
+          } else {
+            echo '<p class="text-danger">Erro ao realizar o cadastro!</p>';
+          }
+        }
+      ?>
+      <h2 class="text-center mb-4">Acesso ao Sistema</h2>
+      <form method="POST">
         <div class="mb-3">
           <label for="emailLogin" class="form-label">E-mail</label>
           <input type="email" class="form-control" id="emailLogin" placeholder="Digite seu e-mail" required>
