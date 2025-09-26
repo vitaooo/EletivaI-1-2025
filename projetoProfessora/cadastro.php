@@ -11,22 +11,18 @@
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 25rem;">
       <h3 class="text-center mb-4">Cadastro de Usuário</h3>
-      <form>
+      <form method="POST">
         <div class="mb-3">
-          <label for="nomeCadastro" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nomeCadastro" placeholder="Digite seu nome" required>
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
         </div>
         <div class="mb-3">
-          <label for="emailCadastro" class="form-label">E-mail</label>
-          <input type="email" class="form-control" id="emailCadastro" placeholder="Digite seu e-mail" required>
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail">
         </div>
         <div class="mb-3">
-          <label for="senhaCadastro" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="senhaCadastro" placeholder="Crie uma senha" required>
-        </div>
-        <div class="mb-3">
-          <label for="confirmaSenha" class="form-label">Confirme a Senha</label>
-          <input type="password" class="form-control" id="confirmaSenha" placeholder="Confirme sua senha" required>
+          <label for="senha" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="senha" name="senha" placeholder="Crie uma senha">
         </div>
         <button type="submit" class="btn btn-success w-100">Cadastrar</button>
       </form>
@@ -35,6 +31,27 @@
       </div>
     </div>
   </div>
+
+  <?php
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+      require("conexao.php");
+      $nome = $_POST['nome'];
+      $email = $_POST['email'];
+      $senha = password_hash($_POST['senha'], PASSWORD_BCRYPT);
+      try{
+        $stmt = $pdo->prepare("INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)");
+          if($stmt->execute([$nome, $email, $senha])){
+            header("location: index.php?cadastro=true");
+          } else {
+            header("location: index.php?cadastro=false");
+          }
+      } catch(Exception $e){
+        echo "Erro ao executar o comando SQL: ".$e->getMessage();
+      }
+
+    }
+  
+  ?>
 
 </body>
 </html>
