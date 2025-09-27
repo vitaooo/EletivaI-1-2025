@@ -4,20 +4,23 @@ include("cabecalho.php");
 echo "<h1>Lista 4</h1>",
 "<h2>Exercício 5</h2>";
 
+$tam = 1;
+
 ?>
 
 <form method="post">
     <div class="mb-3">
-        <?php for ($i = 1; $i <= 2; $i++): ?>
+        <?php for ($i = 1; $i <= $tam; $i++): ?>
             <div class="row inline-row mb-3">
-                <div class="col-md-6">
-                    <label for="nome[<?= $i ?>]" class="form-label">Digite seu nome</label>
-                    <input type="text" id="nome[<?= $i ?>]" name="nome[<?= $i ?>]" class="form-control">
+
+                <div class="col-md-4">
+                    <label for="titulo[<?= $i ?>]" class="form-label">Título do livro: </label>
+                    <input type="text" id="titulo[<?= $i ?>]" name="titulo[<?= $i ?>]" class="form-control" required="">
                 </div>
 
-                <div class="col-md-6">
-                    <label for="phone[<?= $i ?>]" class="form-label">Digite seu número de telefone</label>
-                    <input type="number" id="phone[<?= $i ?>]" name="phone[<?= $i ?>]" class="form-control" required="">
+                <div class="col-md-4">
+                    <label for="quantidade[<?= $i ?>]" class="form-label">Quantidade em estoque: </label>
+                    <input type="number" id="quantidade[<?= $i ?>]" name="quantidade[<?= $i ?>]" class="form-control" required="">
                 </div>
 
             </div>
@@ -27,29 +30,29 @@ echo "<h1>Lista 4</h1>",
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nomes = $_POST['nome'];
-    $numeros = $_POST['phone'];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $mapa_contatos = [];
+    $titulos = $_POST['titulo'];
+    $qtde = $_POST['quantidade'];
 
-    foreach($nomes as $i => $nome) {
-        $numero = $numeros[$i];
 
-        if(!empty($nome) && !empty($numero) && !array_key_exists($nome, $mapa_contatos) && !in_array($numero, $mapa_contatos)) {
-            $mapa_contatos[$nome] = $numero;
+    $mapa_livros = [];
+
+    foreach ($titulos as $i => $titulo) {
+    $qtdeB = $qtde[$i];
+        if ($qtdeB < 5) {
+            echo "<script>alert('Estoque baixo!!');</script>";
         }
-    }
+            $mapa_livros[$titulo] = $qtdeB;
 
-    ksort($mapa_contatos);
+    ksort($mapa_livros);
 
     echo "<p>Lista de contato ordenada:</p>";
 
-    foreach($mapa_contatos as $nome_final => $telefone_final) {
-        echo "<p>$nome_final $telefone_final</p>";
+    foreach ($mapa_livros as $t => $q) {
+        echo "<p>Livro: $t - Quantidade em estoque: $q</p>";
     }
-
-
+}
 }
 include("rodape.php");
 ?>

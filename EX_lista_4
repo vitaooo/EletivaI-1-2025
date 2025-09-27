@@ -1,0 +1,9 @@
+Crie um formulário que leia dados de 5 contatos: nome e número de telefone. Leia os dados e crie um mapa ordenado onde as chaves são os nomes dos contatos e os valores são os números de telefone. Verifique se há duplicatas de nome ou número de telefone antes de adicionar um novo contato. Exiba a lista ordenada pelos nomes dos contatos.
+
+Crie um formulário que leia dados de 5 alunos: nome e três notas. Leia os dados e crie um mapa ordenado onde as chaves são os nomes dos alunos e os valores são as médias das notas. Exiba a lista de alunos ordenada pela média das notas (do maior para o menor).
+
+Crie um formulário que leia dados de 5 produtos, que são: código, nome e preço. Leia os dados e crie um mapa ordenado onde as chaves são os códigos dos produtos e os valores são também mapas ordenados com o nome e o preço dos produtos. Aplique um desconto de 10% em todos os produtos com preço acima de R$100,00 e exiba a lista ordenada pelo nome do produto.
+
+Crie um formulário que leia dados de 5 itens: nome e preço. Leia os dados e crie um mapa ordenado onde as chaves são os nomes dos itens e os valores são os preços após aplicação de um imposto de 15%. Exiba a lista ordenada pelos preços após a aplicação do imposto.
+
+Crie um formulário que leia dados de 5 livros: título e quantidade em estoque. Leia os dados e crie um mapa ordenado onde as chaves são os títulos dos livros e os valores são a quantidade em estoque. Verifique se a quantidade em estoque é inferior a 5 e exiba um alerta para os livros com baixa quantidade. Exiba a lista ordenada pelo título dos livros.

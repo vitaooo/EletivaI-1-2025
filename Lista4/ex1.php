@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $mapa_contatos = [];
 
-    foreach($nomes as $i => $nome) {
+    foreach ($nomes as $i => $nome) {
         $numero = $numeros[$i];
 
-        if(!empty($nome) && !empty($numero) && !array_key_exists($nome, $mapa_contatos) && !in_array($numero, $mapa_contatos)) {
+        if (!empty($nome) && !empty($numero) && !array_key_exists($nome, $mapa_contatos) && !in_array($numero, $mapa_contatos)) {
             $mapa_contatos[$nome] = $numero;
         }
     }
@@ -45,11 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "<p>Lista de contato ordenada:</p>";
 
-    foreach($mapa_contatos as $nome_final => $telefone_final) {
+    foreach ($mapa_contatos as $nome_final => $telefone_final) {
         echo "<p>$nome_final $telefone_final</p>";
     }
-
-
 }
 include("rodape.php");
 ?>
