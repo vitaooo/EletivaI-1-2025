@@ -81,5 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     echo "<p>O menor número é $menor e está na posição $posicao </p>";
+    
+    include("rodape.php");
 }
-include("rodape.php");
