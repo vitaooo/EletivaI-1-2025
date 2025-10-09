@@ -11,8 +11,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema projetophp
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `projetophp` DEFAULT CHARACTER SET utf8 ;
-USE `projetophp` ;
+CREATE SCHEMA IF NOT EXISTS `projetophp` DEFAULT CHARACTER SET utf8;
+USE `projetophp`;
 
 -- -----------------------------------------------------
 -- Table `projetophp`.`usuario`
@@ -20,9 +20,11 @@ USE `projetophp` ;
 CREATE TABLE IF NOT EXISTS `projetophp`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `senha` TEXT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
