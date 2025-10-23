@@ -1,8 +1,5 @@
 <?php
-/*require("conexao.php");
-    if($pdo){
-        echo "<h1>Conexão realizada com sucesso!</h1>";
-    }*/
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,21 +8,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Acesso ao Sistema de Estacionamento</title>
+  <title>Reserva do Estacionamento</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 22rem;">
       <?php
       if (isset($_GET['cadastro'])) {
         $cadastro = $_GET['cadastro'];
         if ($cadastro) {
-          echo "<p class='text-success'>Cadastro de operador realizado com sucesso!</p>";
+          echo "<p class='text-success'>Cadastro realizado com sucesso!</p>";
         } else {
-          echo '<p class="text-danger">Erro ao realizar o cadastro do operador!</p>';
+          echo '<p class="text-danger">Erro ao realizar o cadastro!</p>';
         }
       }
 
@@ -34,15 +30,25 @@
         $email = $_POST['email'];
         $senha = $_POST['senha'];
         try{
-          $stmt = $pdo->prepare("SELECT * FROM usuario WHERE email = ?");
+          $stmt = $pdo->prepare("SELECT * FROM cliente WHERE email = ?");
           $stmt->execute([$email]);
-          $usuario = $stmt->fetch(PDO::FETCH_ASSOC);  
+          $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
           if($usuario && password_verify($senha, $usuario['senha'])){
-            session_start();
+
+            $sttt = $pdo->prepare("SELECT * FROM veiculo WHERE id = ?");
+            $sttt->execute([ $usuario['veiculo_id'] ]); 
+            $veiculo = $sttt->fetch(PDO::FETCH_ASSOC);
+            
             $_SESSION['acesso'] = true;
             $_SESSION['nome'] = $usuario['nome'];
+
+            if ($veiculo) {
+              $_SESSION['placa'] = $veiculo['placa'];
+              $_SESSION['modelo'] = $veiculo['modelo'];
+            }
             
             header('location: principal.php');
+            exit;
           } else {
             echo "<p class='text-danger'>Credenciais inválidas!</p>";
           }
@@ -52,7 +58,7 @@
       }
 
       ?>
-      <h2 class="text-center mb-4">Controle de Estacionamento</h2>
+      <h2 class="text-center mb-4">Acesso ao Estacionamento</h2>
       <form method="POST" action="index.php">
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
@@ -65,7 +71,7 @@
         <button type="submit" class="btn btn-primary w-100">Entrar</button>
       </form>
       <div class="text-center mt-3">
-        <small>Não tem uma conta de operador? <a href="cadastro.php">Cadastre-se aqui</a></small>
+        <small>Não tem uma conta? <a href="cadastro.php">Cadastre-se aqui</a></small>
       </div>
     </div>
   </div>
