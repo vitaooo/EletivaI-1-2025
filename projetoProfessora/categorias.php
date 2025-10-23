@@ -15,6 +15,17 @@
     } else if (isset($_GET['cadastro']) && !$_GET['cadastro']) {
         echo "<p class='text-danger'>Erro ao cadastrar!</p>";
     }
+
+    if (isset($_GET['editar']) && $_GET['editar']){
+      echo "<p clas=='text-success'>Registro editado!</p>";
+    } else if (isset($_GET['editar']) && !$_GET['editar']) {
+      echo "<p class='text-danger'>Erro ao editar!</p>";
+    }
+    if (isset($_GET['excluir']) && $_GET['excluir']){
+      echo "<p clas=='text-success'>Categoria excluída!</p>";
+    } else if (isset($_GET['excluir']) && !$_GET['excluir']) {
+      echo "<p class='text-danger'>Erro ao excluir!</p>";
+    }
 ?>
 
     
