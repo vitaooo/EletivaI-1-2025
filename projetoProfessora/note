@@ -14,3 +14,6 @@ tabela produto
 
 ALTER TABLE usuario
 add column nome varchar(255) NOT NULL;
+
+SELECT * FROM produto p 
+INNER JOIN categoria c ON c.id = p.categoria_id;
