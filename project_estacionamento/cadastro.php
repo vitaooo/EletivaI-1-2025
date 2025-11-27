@@ -56,7 +56,7 @@
               <button type="submit" class="button-s">CADASTRAR</button>
               
               <div class="footer-cad">
-                <p>ou <a href="entrar.php">ENTRAR</a></p>
+                <p>ou <a href="index.php">ENTRAR</a></p>
               </div>
             </form>
             </div>

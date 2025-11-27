@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </form>
 
                 <div class="footer-cad">
-                    Não tem conta? <a href="novo_cliente.php">Cadastre-se</a>
+                    Não tem conta? <a href="cadastro.php">Cadastre-se</a>
                 </div>
             </div>
         </div>
