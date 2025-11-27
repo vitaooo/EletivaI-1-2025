@@ -37,11 +37,11 @@ session_start();
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Vagas
+                            Cadastro
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdown2">
-                            <li><a class="dropdown-item" href="categorias.php">Cadastrar Carro(s)</a></li>
-                            <li><a class="dropdown-item" href="produtos.php">Escolher Vaga</a></li>
+                            <li><a class="dropdown-item" href="categorias.php">Categorias de Produtos</a></li>
+                            <li><a class="dropdown-item" href="produtos.php">Produtos</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -1,6 +1,6 @@
 <?php
     // PDO = PHP DATA OBJECT
-    $dominio = "mysql:host=localhost;dbname=projetoVictor";
+    $dominio = "mysql:host=localhost;dbname=estacionamento_db";
     $usuario = "root";
     $senha = "";
 

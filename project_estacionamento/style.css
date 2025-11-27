@@ -1,0 +1,875 @@
+/* fonts  */
+@font-face {
+  font-family: 'Migra Extrabold'; 
+  src: url('./fonts/Migra-Extrabold.woff2') format('woff2'),
+       url('./fonts/Migra-Extrabold.woff') format('woff');
+  font-weight: 800; 
+  font-style: normal;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'Migra Extralight'; 
+  src: url('./fonts/Migra-Extralight.woff2') format('woff2'),
+       url('./fonts/Migra-Extralight.woff') format('woff');
+  font-weight: 200; 
+  font-style: normal;
+  font-display: swap; 
+}
+
+
+
+.libre-baskerville-regular {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libre-baskerville-bold {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libre-baskerville-regular-italic {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* fonts end */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html,
+body {
+  background-color: #e1dfd4;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+.container-principal {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+.hcabecalho {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 0;
+  font-size: 30px;
+  font-family: "Bebas Neue", sans-seri;
+  color: white;
+  border-bottom: 3px solid white;
+  padding-bottom: 0px;
+  display: inline-block;
+}
+
+.hcabecalho-ev {
+  color: #ffde59;
+}
+
+.hsubtitle {
+  margin-top: 0;
+  margin-left: 25px;
+  font-size: 20px;
+  font-family: "Bebas Neue", sans-seri;
+  color: white;
+}
+
+
+#pcabecalho {
+  color: white;
+  font-size: 18px;
+  font-family: "bebas-neue-regular", sans-serif;
+  justify-items: right;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+#cabecalhodiv {
+  display: flex;
+  background-color: #6c8c7d;
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#bentrar {
+  font-size: 22px;
+  color: black;
+  text-align: center;
+  margin-left: 400px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  width: 150px;
+  border: 2px solid black;
+  background-color: transparent;
+  border-radius: 40px;
+  font-family: "Bebas Neue", sans-serif;
+}
+.center {
+  display: flex;
+  width: 100%;
+}
+
+.secao_bemvindo {
+  width: 100%;
+  height: 100%;
+}
+
+.secao_titulo {
+  font-size: 52px;
+  font-family: 'Migra Extrabold', sans-serif;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 60px;
+  color: #36454f;
+}
+
+.secao_p {
+  color: #36454f;
+  font-family: "baskerville-regular", serif;
+  font-size: 26px;
+  margin-left: 70px;
+}
+
+.secao_imagem {
+  width: 100%;
+  height: 100%;
+}
+
+.corredor {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.container-pai {
+  text-align: left;
+  margin-left: 65px;
+}
+
+.botao_cadastro {
+  font-size: 22px;
+  color: #6c8c7d;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  width: 30%;
+  border: 2px solid #6c8c7d;
+  background-color: transparent;
+  border-radius: 40px;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+/* cadastro */
+
+.body-cas {
+  display: flex;
+  min-height: 100vh;
+  background-color: #e1dfd4;
+}
+
+.card-sprint {
+  margin: auto;
+  background-color: black;
+  width: 50%;
+  max-width: 550px;
+  padding: 70px;
+  border-radius: 60px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+.header-title {
+  color: #ffe600;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.8rem;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.text-success {
+  color: white;
+  text-align: center;
+  margin-top: 0;
+}
+
+.header-subtitle {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.label-pill {
+  background-color: #ffe600;
+  color: white;
+  font-weight: bold;
+  font-family: "Bebas Neue", sans-serif;
+  border: 10xp;
+  padding: 8px 15px;
+  border-radius: 20px;
+  width: 35%;
+  font-size: 20px;
+  display: flex;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.label-pill span {
+  margin-right: 5px;
+}
+
+.input-field {
+  background-color: transparent;
+  border-left: 10px solid #ffe600;
+  border-right: 10px solid #ffe600;
+  border-top: 1px solid #ffe600;
+  border-bottom: 1px solid #ffe600;
+  font-family: "Bebas Neue, sans-serif";
+  border-radius: 20px;
+  font-size: 18px;
+  color: white;
+  padding: 8px 15px;
+  width: 65%;
+  outline: none;
+  font-weight: bold;
+}
+
+.input-field::placeholder {
+  color: #ccc;
+  font-weight: normal;
+}
+
+.label-full {
+  background-color: #ffe600;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 20px;
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-salvar {
+  width: 200px;
+  padding: 10px;
+  font-family: "Bebas Neue", sans-serif;
+  background-color: #ffe600;
+  color: white;
+  display: block;
+  margin: 20px auto 0 auto; 
+  border-radius: 50px;
+  font-size: 24px;
+}
+
+.btn-salvar:hover {
+  cursor: pointer;
+}
+
+.btn-entraraqui {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.btn-entraraqui:hover {
+  cursor: pointer;
+}
+
+/* entrar.php */
+
+.body-in {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e1dfd4;
+}
+
+.login-card {
+  background-color: #6c8c7d;
+  width: 100%;  
+  max-width: 500px;
+  margin-top: 75px;
+  margin-left: 200px;
+  height: 70%;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+  font-weight: 600;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  margin-right: 30px;
+}
+
+.input-group label {
+  display: block;
+  width: 120px;
+  text-align: center;
+  border-radius: 40px;
+  padding: 10px;
+  font-family: "Bebas Neue", sans-serif;
+  color: #36454f;
+  font-size: 16px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  font-size: 14px;
+}
+
+.button-s {
+  width: 100%;
+  max-width: 160px;
+  padding: 12px;
+  background-color: transparent;
+  color: #36454f;
+  border-radius: 60px;
+  font-size: 16px;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+  transition: background-color 0.9s;
+}
+
+.footer {
+  text-align: center;
+  background-color: #36454f;
+  width: 100%;
+  padding: 1px;
+  margin: auto;
+  border-radius: 20px;
+  margin-top: 25px;
+  font-size: 14px;
+  color: white;
+}
+
+.login-title {
+  font-size: 20px;
+  font-family: "Bebas Neue", sans-serif;
+  color: white;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  max-width: 240px;
+}
+
+.login-title-ev {
+  color: #ffde59;
+}
+
+/* CABECALHO */
+.div-cabecalho {
+  background-color: #ffde59;
+  display: flex;                                                                                                                                                                                                                                                                                                                                 
+  justify-content: space-between;
+  height: 10%;
+}
+
+.cabprincipal {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 30px;
+
+  font-family: "telegraf_regular", sans-serif;
+  margin-right: 5px;
+  color: white;
+  text-decoration: underline black;
+}
+
+.cabprincipal-ev {
+  color: #000000;
+}
+
+/* PRINCIPAL  */
+.div-title-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  padding: 10px 0;
+}
+
+.title-main {
+  color: white;
+  margin-left: 20px;
+  text-align: center;
+  font-size: x-large;
+}
+
+.get-out {
+  color: #efd738;
+  margin-right: 20px;
+  font-family: "telegraf_regular", sans-serif;
+  text-decoration: underline #efd738;
+}
+
+:root {
+  --sidebar-bg: #f3de5f; 
+  --active-item-bg: #ffe96b; 
+  --main-bg: #000000;
+  --text-dark: #000000;
+  --text-light: #ffffff;
+}
+
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; 
+}
+
+.menu-list {
+  list-style: none;
+  padding-top: 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.menu-item i {
+  margin-right: 15px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-item svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.menu-item.active {
+  background-color: var(--active-item-bg);
+}
+
+.menu-item.active::after {
+  content: "";
+  position: absolute;
+  right: 0; 
+  top: 50%;
+  transform: translateY(-50%) translateX(100%);
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-left: 25px solid var(--active-item-bg); 
+  z-index: 10;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: var(--main-bg);
+  color: var(--text-light);
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main-header h1 {
+  font-size: 1.5rem;
+  padding-top: 15px;
+}
+
+.content-center {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.cursive-text {
+  font-family: "telegraf_regular", sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+/* Caixa do botão de adicionar */
+.create-box {
+  width: 130px;
+  height: 130px;
+  background-color: transparent;
+  border: 5px solid white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.create-box:hover {
+  transform: scale(1.05);
+}
+
+.plus-sign {
+  font-size: 100px;
+  color: var(--active-item-bg);
+  line-height: 0;
+  font-weight: bold;
+  margin-top: -10px; 
+}      
+
+.logout-btn {
+  color: var(--active-item-bg);
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* footer */
+.rodape-pagina {
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid #333; 
+        color: #666; 
+        font-size: 0.85rem;
+        text-align: center;
+        width: 100%;
+}
+
+.body-cr {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto; 
+    padding: 20px;
+}
+
+.header-flex {
+    display: flex;
+    position: relative;
+    margin-left: 0;
+}
+
+/* --- 3. Navegação --- */
+.navbar {
+    background-color: #2c3e50;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background 0.3s;
+    border-radius: 4px;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.btn {
+    padding: 20px 20px;
+    text-decoration: none;
+    color: white;
+    height: 60px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-partida {
+    margin-left: auto;
+    color: white;
+    margin-top: 0;
+    background-color: #2980b9;
+}
+
+.btn:hover { opacity: 0.9; }
+
+
+.campeonato-main {
+  display: flex;
+}
+
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.styled-table thead tr {
+    background-color: #2980b9;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th, 
+.styled-table td {
+    padding: 15px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.match-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.match-header {
+    background: #34495e;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.match-body {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.team {
+    flex: 1; /* Ocupa espaço igual */
+    text-align: center;
+}
+
+.team-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    display: block;
+}
+
+.team-label {
+    font-size: 0.7rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+}
+
+.scoreboard {
+    flex: 0 0 150px; 
+    text-align: center;
+    background: #364d53;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 15px;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.body-cab {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+/* --- Layout Principal (Flexbox) --- */
+.app-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- Barra Lateral (Sidebar) --- */
+.sidebar {
+    width: 250px; /* Largura fixa do menu */
+    background-color: #f4d03f; /* Amarelo da imagem */
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    border-right: 1px solid #e0c345;
+}
+
+.sidebar-menu {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    width: 100%;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #000; /* Texto preto */
+    font-weight: 700; /* Negrito */
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    position: relative; /* Necessário para a seta */
+}
+
+.sidebar-menu a i {
+    margin-right: 15px; /* Espaço entre ícone e texto */
+    font-size: 1.3rem;
+    width: 30px; /* Alinhamento fixo dos ícones */
+    text-align: center;
+}
+
+
+/* --- Item Ativo (A Seta Preta) --- */
+.sidebar-menu a.active {
+    background-color: #000; /* Fundo preto */
+    color: #fff; /* Texto branco */
+}
+
+/* A ponta da seta (triângulo) usando CSS puro */
+.sidebar-menu a.active::after {
+    content: '';
+    position: absolute;
+    right: -20px; /* Joga para fora do menu */
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 28px solid transparent; /* Metade da altura do item */
+    border-bottom: 28px solid transparent;
+    border-left: 20px solid #000; /* Cor da seta (preta) */
+    z-index: 10;
+}
+
+/* --- Conteúdo Principal (Direita) --- */
+.main-content {
+    flex: 1; /* Ocupa o espaço restante */
+    background-color: #fff;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header {
+    background-color: #000;
+    color: white;
+    padding: 15px 40px; 
+    font-size: 1.5rem;
+    justify-content: space-between;
+    font-weight: bold;
+    height: 56px; 
+    display: flex;
+    align-items: center;
+}
+
+.content-wrapper {
+    padding: 30px;
+}
