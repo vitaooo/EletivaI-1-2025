@@ -1,6 +1,3 @@
-/* =========================================
-   1. FONTES E VARIÁVEIS GERAIS
-   ========================================= */
 @font-face {
     font-family: 'Migra Extrabold'; 
     src: url('./fonts/Migra-Extrabold.woff2') format('woff2'),
@@ -15,22 +12,18 @@
     font-weight: 200; font-style: normal; font-display: swap; 
 }
 
-/* Variáveis de Cores (Mude aqui para alterar o site todo) */
 :root {
-    --bg-color: #E6E2D3;       /* Bege Fundo */
-    --header-bg: #638374;      /* Verde Principal */
-    --header-dark: #4a6356;    /* Verde Escuro (Bordas/Hover) */
-    --accent-yellow: #ffde59;  /* Amarelo Destaque */
-    --text-dark: #333;         /* Texto Padrão */
+    --bg-color: #E6E2D3;       
+    --header-bg: #638374;      
+    --header-dark: #4a6356;    
+    --accent-yellow: #ffde59;  
+    --text-dark: #333;         
     --white: #ffffff;
-    --danger: #dc3545;         /* Vermelho Erro/Excluir */
-    --success: #28a745;        /* Verde Sucesso */
-    --primary-btn: #0d6efd;    /* Azul Botão */
+    --danger: #dc3545;         
+    --success: #28a745;        
+    --primary-btn: #0d6efd;    
 }
 
-/* =========================================
-   2. RESET BÁSICO E CORPO
-   ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
@@ -43,17 +36,13 @@ html, body {
 
 a { text-decoration: none; color: inherit; }
 
-/* Container Principal do Site (Conteúdo) */
 .container {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    padding-bottom: 60px; /* Espaço para o footer não colar */
+    padding-bottom: 60px; 
 }
 
-/* =========================================
-   3. ESTILOS DO CABEÇALHO (Antigo PHP)
-   ========================================= */
 header.main-header {
     background-color: var(--header-bg);
     color: var(--white);
@@ -68,7 +57,7 @@ header.main-header {
     border-bottom: 1px solid rgba(255,255,255,0.3);
     display: inline-block;
     margin-bottom: 5px;
-    font-family: 'Migra Extrabold', sans-serif; /* Usando sua fonte personalizada */
+    font-family: 'Migra Extrabold', sans-serif; 
 }
 
 .logo-area span {
@@ -83,7 +72,6 @@ header.main-header {
     color: #2f3d36;
 }
 
-/* Navegação Horizontal */
 .nav-bar {
     margin-top: 15px;
     display: flex;
@@ -92,7 +80,7 @@ header.main-header {
     background: rgba(0,0,0,0.1);
     padding: 8px;
     border-radius: 4px;
-    flex-wrap: wrap; /* Permite quebrar linha em mobile */
+    flex-wrap: wrap; 
 }
 
 .nav-bar a {
@@ -120,9 +108,6 @@ header.main-header {
     font-weight: bold;
 }
 
-/* =========================================
-   4. TABELAS (Unificado)
-   ========================================= */
 .styled-table {
     width: 100%;
     border-collapse: collapse;
@@ -149,12 +134,9 @@ header.main-header {
 }
 
 .styled-table tbody tr:hover {
-    background-color: #e9ecef; /* Efeito hover na linha */
+    background-color: #e9ecef; 
 }
 
-/* =========================================
-   5. FORMULÁRIOS E BOTÕES GERAIS
-   ========================================= */
 .header-flex {
     display: flex;
     justify-content: space-between;
@@ -188,14 +170,12 @@ header.main-header {
 .btn:hover { opacity: 0.9; }
 .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
 
-/* Cores de Botões */
 .btn-primary { background-color: var(--primary-btn); color: white; }
 .btn-secondary { background-color: #6c757d; color: white; }
 .btn-success { background-color: var(--success); color: white; }
 .btn-danger { background-color: var(--danger); color: white; }
 .btn-warning { background-color: #ffc107; color: #000; }
 
-/* Alertas */
 .alert {
     padding: 15px;
     margin-bottom: 20px;
@@ -206,9 +186,6 @@ header.main-header {
 .alert-success { color: #155724; background-color: #d4edda; border-color: #c3e6cb; }
 .alert-warning { color: #856404; background-color: #fff3cd; border-color: #ffeeba; }
 
-/* =========================================
-   6. PAGINA DE LOGIN (Efeito Papel Rasgado)
-   ========================================= */
 .body-in {
     display: flex;
     justify-content: center;
@@ -219,7 +196,7 @@ header.main-header {
 
 .fundo-carros {
     width: 100%;
-    height: 100vh; /* Ocupa tela toda */
+    height: 100vh; 
     background: url('img/carros-login.png') no-repeat right center; 
     background-size: cover;
     display: flex;
@@ -229,15 +206,13 @@ header.main-header {
 .papel-rasgado {
     background-color: #E6E8E3; 
     height: 100%;
-    width: 50%; /* Ocupa metade da tela */
+    width: 50%; 
     min-width: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    
-    /* MÁGICA DO RASGO (ZIG-ZAG) */
     clip-path: polygon(
         0% 0%, 100% 0%, 
         98% 5%, 100% 10%, 98% 15%, 100% 20%, 
@@ -251,9 +226,8 @@ header.main-header {
 
 .login-content { width: 100%; max-width: 380px; }
 
-/* Estilo Inputs Login */
 .papel-rasgado label {
-    font-family: 'Bebas Neue', sans-serif; /* Assumindo que você tem essa fonte */
+    font-family: 'Bebas Neue', sans-serif; 
     color: var(--header-dark);
     font-size: 1.2rem;
     font-weight: bold;
@@ -288,9 +262,6 @@ header.main-header {
     color: white;
 }
 
-/* =========================================
-   7. RODAPÉ
-   ========================================= */
 .rodape-pagina {
     margin-top: 50px;
     padding-top: 20px;
@@ -300,9 +271,21 @@ header.main-header {
     text-align: center;
 }
 
-/* =========================================
-   8. DASHBOARD (Principal.php)
-   ========================================= */
+.footer-cad {
+    text-align: center;
+    margin-top: 15px;
+    color: #4A6A64;
+}
+
+.footer-cad a {
+    background-color: #36454f;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -319,7 +302,7 @@ header.main-header {
     justify-content: space-between;
     align-items: center;
     transition: transform 0.2s;
-    border-left: 5px solid #ccc; /* Cor padrão */
+    border-left: 5px solid #ccc; 
 }
 
 .card-stats:hover {
@@ -345,7 +328,6 @@ header.main-header {
     opacity: 0.2;
 }
 
-/* Cores Específicas dos Cards */
 .card-blue { border-left-color: #0d6efd; }
 .card-blue h3 { color: #0d6efd; }
 
@@ -358,7 +340,6 @@ header.main-header {
 .card-yellow { border-left-color: #ffc107; }
 .card-yellow h3 { color: #d39e00; }
 
-/* Área de Ações Rápidas */
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

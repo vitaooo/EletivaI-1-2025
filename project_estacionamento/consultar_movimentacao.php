@@ -18,15 +18,13 @@ if(isset($_GET['id'])){
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $id = $_POST['id'];
     $vaga_id = $_POST['vaga_id_real'];
-    $data_saida = $_POST['data_saida_atual']; // Verifica se já tinha saído
+    $data_saida = $_POST['data_saida_atual'];
 
     try {
         $pdo->beginTransaction();
 
-        // Deleta registro
         $pdo->prepare("DELETE FROM movimentacao WHERE id = ?")->execute([$id]);
 
-        // Se a data de saída estava vazia (carro estava estacionado), liberamos a vaga na marra
         if(empty($data_saida)){
             $pdo->prepare("UPDATE vaga SET status = 'LIVRE' WHERE id = ?")->execute([$vaga_id]);
         }

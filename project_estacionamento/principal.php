@@ -2,18 +2,10 @@
 require("conexao.php");
 require("cabecalho.php");
 
-// --- LÓGICA: Buscar Estatísticas ---
 try {
-    // 1. Total de Vagas
     $total_vagas = $pdo->query("SELECT count(*) FROM vaga")->fetchColumn();
-
-    // 2. Vagas Ocupadas
     $ocupadas = $pdo->query("SELECT count(*) FROM vaga WHERE status = 'OCUPADA'")->fetchColumn();
-
-    // 3. Vagas Livres (Cálculo simples)
     $livres = $total_vagas - $ocupadas;
-
-    // 4. Movimentações (Entradas) de Hoje
     $hoje = $pdo->query("SELECT count(*) FROM movimentacao WHERE DATE(data_entrada) = CURDATE()")->fetchColumn();
 
 } catch (Exception $e) {

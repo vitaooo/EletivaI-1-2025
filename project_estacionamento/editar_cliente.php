@@ -1,44 +1,41 @@
 <?php
-    require("cabecalho.php");
-    require("conexao.php");
+require("cabecalho.php");
+require("conexao.php");
 
-    // 1. Busca dados do cliente
-    if($_SERVER['REQUEST_METHOD'] == "GET"){
-        if(isset($_GET['id'])){
-            try{
-                $stmt = $pdo->prepare("SELECT * FROM cliente WHERE id = ?");
-                $stmt->execute([$_GET['id']]);
-                $dados = $stmt->fetch(PDO::FETCH_ASSOC);
-            } catch (Exception $e){
-                echo "Erro: ".$e->getMessage();
-            }
-        }
-    }
-
-    // 2. Salva alterações
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $id = $_POST['id'];
-        $nome = $_POST['nome'];
-        $cpf = $_POST['cpf'];
-        $telefone = $_POST['telefone'];
-        $email = $_POST['email'];
-
+if($_SERVER['REQUEST_METHOD'] == "GET"){
+    if(isset($_GET['id'])){
         try{
-            // Nota: Não estamos atualizando a senha aqui para simplificar
-            $sql = "UPDATE cliente SET nome = ?, cpf = ?, telefone = ?, email = ? WHERE id = ?";
-            $stmt = $pdo->prepare($sql);
-            
-            if($stmt->execute([$nome, $cpf, $telefone, $email, $id])){
-                header('location: clientes.php?editar=true');
-                exit;
-            } else {
-                header('location: clientes.php?editar=false');
-                exit;
-            }
-        }catch(\Exception $e){
+            $stmt = $pdo->prepare("SELECT * FROM cliente WHERE id = ?");
+            $stmt->execute([$_GET['id']]);
+            $dados = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e){
             echo "Erro: ".$e->getMessage();
         }
     }
+}
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $id = $_POST['id'];
+    $nome = $_POST['nome'];
+    $cpf = $_POST['cpf'];
+    $telefone = $_POST['telefone'];
+    $email = $_POST['email'];
+
+    try{
+        $sql = "UPDATE cliente SET nome = ?, cpf = ?, telefone = ?, email = ? WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        
+        if($stmt->execute([$nome, $cpf, $telefone, $email, $id])){
+            header('location: clientes.php?editar=true');
+            exit;
+        } else {
+            header('location: clientes.php?editar=false');
+            exit;
+        }
+    }catch(\Exception $e){
+        echo "Erro: ".$e->getMessage();
+    }
+}
 ?>
 
 <h2 style="color: black;">Editar Cliente</h2>

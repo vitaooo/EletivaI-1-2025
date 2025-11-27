@@ -1,31 +1,31 @@
 <?php
-    require("cabecalho.php");
-    require("conexao.php");
+require("cabecalho.php");
+require("conexao.php");
 
-    $veiculo = null;
+$veiculo = null;
 
-    if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['id'])){
-        $sql = "SELECT v.*, c.nome as nome_cliente 
-                FROM veiculo v 
-                INNER JOIN cliente c ON v.cliente_id = c.id
-                WHERE v.id = ?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$_GET['id']]);
-        $veiculo = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['id'])){
+    $sql = "SELECT v.*, c.nome as nome_cliente 
+            FROM veiculo v 
+            INNER JOIN cliente c ON v.cliente_id = c.id
+            WHERE v.id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$_GET['id']]);
+    $veiculo = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])){
-        $id = $_POST['id'];
-        try{
-            $stmt = $pdo->prepare("DELETE FROM veiculo WHERE id = ?");
-            if($stmt->execute([$id])){
-                header('location: veiculos.php?excluir=true');
-                exit; 
-            }
-        }catch(\Exception $e){
-            echo "Erro ao excluir: ".$e->getMessage();
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['id'])){
+    $id = $_POST['id'];
+    try{
+        $stmt = $pdo->prepare("DELETE FROM veiculo WHERE id = ?");
+        if($stmt->execute([$id])){
+            header('location: veiculos.php?excluir=true');
+            exit; 
         }
+    }catch(\Exception $e){
+        echo "Erro ao excluir: ".$e->getMessage();
     }
+}
 ?>
 
 <div style="margin-top: 20px;">

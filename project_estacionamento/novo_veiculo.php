@@ -1,33 +1,31 @@
 <?php
-    require("conexao.php");
+require("conexao.php");
 
-    // Processa o formulário
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $placa = strtoupper($_POST['placa']);
-        $modelo = $_POST['modelo'];
-        $cor = $_POST['cor'];
-        $cliente_id = $_POST['cliente_id'];
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $placa = strtoupper($_POST['placa']);
+    $modelo = $_POST['modelo'];
+    $cor = $_POST['cor'];
+    $cliente_id = $_POST['cliente_id'];
+    
+    try{
+        $sql = "INSERT INTO veiculo (placa, modelo, cor, cliente_id) VALUES (?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
         
-        try{
-            $sql = "INSERT INTO veiculo (placa, modelo, cor, cliente_id) VALUES (?, ?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            
-            if($stmt->execute([$placa, $modelo, $cor, $cliente_id])){
-                header('location: veiculos.php?cadastro=true');
-                exit();
-            } else {
-                header('location: veiculos.php?cadastro=false');
-                exit();
-            }
-        } catch(PDOException $e){
-            $erro = "Erro ao salvar (Placa já existe?): " . $e->getMessage();
+        if($stmt->execute([$placa, $modelo, $cor, $cliente_id])){
+            header('location: veiculos.php?cadastro=true');
+            exit();
+        } else {
+            header('location: veiculos.php?cadastro=false');
+            exit();
         }
+    } catch(PDOException $e){
+        $erro = "Erro ao salvar (Placa já existe?): " . $e->getMessage();
     }
+}
 
-    // Busca clientes para o select
-    $clientes = $pdo->query("SELECT id, nome FROM cliente")->fetchAll();
+$clientes = $pdo->query("SELECT id, nome FROM cliente")->fetchAll();
 
-    require("cabecalho.php"); 
+require("cabecalho.php"); 
 ?>
 
 <?php if(isset($erro)): ?>

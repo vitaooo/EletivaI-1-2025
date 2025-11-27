@@ -1,7 +1,6 @@
 <?php
 require("conexao.php");
 
-// Busca dados da movimentação
 if(isset($_GET['id'])){
     $sql = "SELECT m.*, v.placa, vg.codigo as codigo_vaga, vg.id as vaga_id_real 
             FROM movimentacao m 
@@ -13,7 +12,6 @@ if(isset($_GET['id'])){
     $mov = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Processa Saída
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $id = $_POST['id'];
     $data_saida = date('Y-m-d H:i:s');
@@ -23,11 +21,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     try {
         $pdo->beginTransaction();
 
-        // Atualiza Movimentação (Saída e Valor)
         $stmt = $pdo->prepare("UPDATE movimentacao SET data_saida = ?, valor_total = ? WHERE id = ?");
         $stmt->execute([$data_saida, $valor, $id]);
 
-        // Libera a Vaga
         $stmtVaga = $pdo->prepare("UPDATE vaga SET status = 'LIVRE' WHERE id = ?");
         $stmtVaga->execute([$vaga_id]);
 
@@ -71,7 +67,6 @@ require("cabecalho.php");
 
     <div class="mb-3">
         <label class="form-label">Valor Total (R$)</label>
-        <!-- Aqui você poderia fazer um cálculo automático via JS ou PHP -->
         <input type="number" step="0.01" name="valor_total" class="form-control" required placeholder="0.00">
         <small>Insira o valor a ser cobrado.</small>
     </div>

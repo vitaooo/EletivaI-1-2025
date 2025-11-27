@@ -1,38 +1,35 @@
 <?php
-    require("conexao.php");
+require("conexao.php");
 
-    // 1. Se for GET, busca os dados do veículo para preencher o form
-    if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['id'])){
-        $stmt = $pdo->prepare("SELECT * FROM veiculo WHERE id = ?");
-        $stmt->execute([$_GET['id']]);
-        $veiculo = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['id'])){
+    $stmt = $pdo->prepare("SELECT * FROM veiculo WHERE id = ?");
+    $stmt->execute([$_GET['id']]);
+    $veiculo = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
-    // 2. Se for POST, atualiza os dados
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $id = $_POST['id'];
-        $placa = strtoupper($_POST['placa']);
-        $modelo = $_POST['modelo'];
-        $cor = $_POST['cor'];
-        $cliente_id = $_POST['cliente_id'];
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $id = $_POST['id'];
+    $placa = strtoupper($_POST['placa']);
+    $modelo = $_POST['modelo'];
+    $cor = $_POST['cor'];
+    $cliente_id = $_POST['cliente_id'];
+    
+    try{
+        $sql = "UPDATE veiculo SET placa=?, modelo=?, cor=?, cliente_id=? WHERE id=?";
+        $stmt = $pdo->prepare($sql);
         
-        try{
-            $sql = "UPDATE veiculo SET placa=?, modelo=?, cor=?, cliente_id=? WHERE id=?";
-            $stmt = $pdo->prepare($sql);
-            
-            if($stmt->execute([$placa, $modelo, $cor, $cliente_id, $id])){
-                header('location: veiculos.php?editar=true');
-                exit();
-            }
-        } catch(PDOException $e){
-            $erro = "Erro ao atualizar: " . $e->getMessage();
+        if($stmt->execute([$placa, $modelo, $cor, $cliente_id, $id])){
+            header('location: veiculos.php?editar=true');
+            exit();
         }
+    } catch(PDOException $e){
+        $erro = "Erro ao atualizar: " . $e->getMessage();
     }
+}
 
-    // Busca clientes para o select
-    $clientes = $pdo->query("SELECT id, nome FROM cliente")->fetchAll();
+$clientes = $pdo->query("SELECT id, nome FROM cliente")->fetchAll();
 
-    require("cabecalho.php"); 
+require("cabecalho.php"); 
 ?>
 
 <?php if(isset($erro)): ?>
@@ -42,7 +39,6 @@
 <h2 style="color: black;">Editar Veículo</h2>
 
 <?php if(isset($veiculo) || isset($_POST['id'])): 
-    // Garante que temos dados (seja do banco ou do post anterior se deu erro)
     $val_id = $veiculo['id'] ?? $_POST['id'];
     $val_placa = $veiculo['placa'] ?? $_POST['placa'];
     $val_modelo = $veiculo['modelo'] ?? $_POST['modelo'];

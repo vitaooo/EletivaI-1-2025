@@ -1,20 +1,17 @@
 <?php
 require("conexao.php");
 
-// 1. Processa Formulário
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $veiculo_id = $_POST['veiculo_id'];
     $vaga_id = $_POST['vaga_id'];
-    $data_entrada = date('Y-m-d H:i:s'); // Data atual
+    $data_entrada = date('Y-m-d H:i:s');
 
     try {
         $pdo->beginTransaction();
 
-        // Insere Movimentação
         $stmt = $pdo->prepare("INSERT INTO movimentacao (veiculo_id, vaga_id, data_entrada) VALUES (?, ?, ?)");
         $stmt->execute([$veiculo_id, $vaga_id, $data_entrada]);
 
-        // Atualiza status da Vaga para OCUPADA
         $stmtVaga = $pdo->prepare("UPDATE vaga SET status = 'OCUPADA' WHERE id = ?");
         $stmtVaga->execute([$vaga_id]);
 
@@ -28,7 +25,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 
-// 2. Busca Veículos e Vagas LIVRES
 $veiculos = $pdo->query("SELECT id, placa, modelo FROM veiculo")->fetchAll();
 $vagas = $pdo->query("SELECT id, codigo FROM vaga WHERE status = 'LIVRE'")->fetchAll();
 

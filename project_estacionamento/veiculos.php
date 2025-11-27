@@ -40,7 +40,6 @@ try {
                 <td><?= $d['nome_cliente'] ?></td>
                 <td style="text-align: center; display: flex; gap: 5px; justify-content: center;">
                     <a href="editar_veiculo.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
-                    <!-- Botão Consultar Adicionado -->
                     <a href="consultar_veiculo.php?id=<?= $d['id'] ?>" class="btn btn-warning btn-sm">Consultar</a>
                 </td>
             </tr>

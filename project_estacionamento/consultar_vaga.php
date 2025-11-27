@@ -4,11 +4,9 @@ require("conexao.php");
 $vaga = null;
 $erro_msg = null;
 
-// 1. Lógica de Exclusão (POST)
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id = $_POST['id'];
     try {
-        // Verifica se a vaga está ocupada antes de excluir
         $check = $pdo->prepare("SELECT status FROM vaga WHERE id = ?");
         $check->execute([$id]);
         $v = $check->fetch();
@@ -27,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-// 2. Busca Dados (GET)
 $id_busca = $_GET['id'] ?? $_POST['id'] ?? null;
 if ($id_busca) {
     $stmt = $pdo->prepare("SELECT * FROM vaga WHERE id = ?");

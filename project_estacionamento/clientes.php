@@ -8,8 +8,6 @@ try {
 } catch (\Exception $e) {
     echo "Erro: " . $e->getMessage();
 }
-
-// Mensagens omitidas para brevidade, mas funcionam igual
 ?>
 
 <div class="header-flex">
@@ -38,7 +36,6 @@ try {
                 <td><?= $d['email'] ?></td>
                 <td style="text-align: center; display: flex; gap: 5px; justify-content: center;">
                     <a href="editar_cliente.php?id=<?= $d['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
-                    <!-- Botão Consultar Adicionado -->
                     <a href="consulta_cliente.php?id=<?= $d['id'] ?>" class="btn btn-warning btn-sm">Consultar</a>
                 </td>
             </tr>

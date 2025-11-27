@@ -1,19 +1,19 @@
 <?php
-    require("cabecalho.php");
-    require("conexao.php");
+require("cabecalho.php");
+require("conexao.php");
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $codigo = strtoupper($_POST['codigo']);
-        $status = $_POST['status'];
-        
-        try{
-            $stmt = $pdo->prepare("INSERT INTO vaga (codigo, status) VALUES (?, ?)");
-            $stmt->execute([$codigo, $status]);
-            header('location: vagas.php');
-        }catch(\Exception $e){
-            echo "<div class='alert alert-danger'>Erro: ".$e->getMessage()."</div>";
-        }
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $codigo = strtoupper($_POST['codigo']);
+    $status = $_POST['status'];
+    
+    try{
+        $stmt = $pdo->prepare("INSERT INTO vaga (codigo, status) VALUES (?, ?)");
+        $stmt->execute([$codigo, $status]);
+        header('location: vagas.php');
+    }catch(\Exception $e){
+        echo "<div class='alert alert-danger'>Erro: ".$e->getMessage()."</div>";
     }
+}
 ?>
 
 <h2 style="color: black;">Cadastrar Nova Vaga</h2>

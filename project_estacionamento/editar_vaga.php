@@ -1,83 +1,48 @@
 <?php
+require("cabecalho.php");
 require("conexao.php");
 
-// Busca dados da movimentação
 if(isset($_GET['id'])){
-    $sql = "SELECT m.*, v.placa, vg.codigo as codigo_vaga, vg.id as vaga_id_real 
-            FROM movimentacao m 
-            INNER JOIN veiculo v ON m.veiculo_id = v.id 
-            INNER JOIN vaga vg ON m.vaga_id = vg.id 
-            WHERE m.id = ?";
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare("SELECT * FROM vaga WHERE id = ?");
     $stmt->execute([$_GET['id']]);
-    $mov = $stmt->fetch(PDO::FETCH_ASSOC);
+    $dados = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Processa Saída
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     $id = $_POST['id'];
-    $data_saida = date('Y-m-d H:i:s');
-    $valor = $_POST['valor_total'];
-    $vaga_id = $_POST['vaga_id_real'];
+    $codigo = strtoupper($_POST['codigo']);
+    $status = $_POST['status'];
 
-    try {
-        $pdo->beginTransaction();
-
-        // Atualiza Movimentação (Saída e Valor)
-        $stmt = $pdo->prepare("UPDATE movimentacao SET data_saida = ?, valor_total = ? WHERE id = ?");
-        $stmt->execute([$data_saida, $valor, $id]);
-
-        // Libera a Vaga
-        $stmtVaga = $pdo->prepare("UPDATE vaga SET status = 'LIVRE' WHERE id = ?");
-        $stmtVaga->execute([$vaga_id]);
-
-        $pdo->commit();
-        header('location: movimentacao.php?saida=true');
-        exit;
-
-    } catch(Exception $e) {
-        $pdo->rollBack();
-        echo "Erro: " . $e->getMessage();
+    try{
+        $stmt = $pdo->prepare("UPDATE vaga SET codigo = ?, status = ? WHERE id = ?");
+        $stmt->execute([$codigo, $status, $id]);
+        header('location: vagas.php');
+    }catch(\Exception $e){
+        echo "<div class='alert alert-danger'>Erro: ".$e->getMessage()."</div>";
     }
 }
-
-require("cabecalho.php");
 ?>
 
-<div class="header-flex">
-    <h2>Finalizar Estadia (Saída)</h2>
-</div>
+<h2 style="color: black;">Editar Vaga</h2>
 
-<form method="post" style="max-width: 600px;">
-    <input type="hidden" name="id" value="<?= $mov['id'] ?>">
-    <input type="hidden" name="vaga_id_real" value="<?= $mov['vaga_id_real'] ?>">
-
+<form method="post" style="max-width: 500px; background: white; padding: 20px; border-radius: 8px;">
+    <input type="hidden" name="id" value="<?= $dados['id'] ?? '' ?>">
+    
     <div class="mb-3">
-        <label class="form-label">Veículo / Vaga</label>
-        <input type="text" class="form-control" disabled 
-               value="<?= strtoupper($mov['placa']) ?> - Vaga <?= $mov['codigo_vaga'] ?>">
+        <label>Código</label>
+        <input value="<?= $dados['codigo'] ?? '' ?>" type="text" name="codigo" class="form-control" required>
     </div>
 
     <div class="mb-3">
-        <label class="form-label">Data Entrada</label>
-        <input type="text" class="form-control" disabled 
-               value="<?= date('d/m/Y H:i:s', strtotime($mov['data_entrada'])) ?>">
+        <label>Status</label>
+        <select name="status" class="form-control">
+            <option value="LIVRE" <?= ($dados['status'] == 'LIVRE') ? 'selected' : '' ?>>LIVRE</option>
+            <option value="OCUPADA" <?= ($dados['status'] == 'OCUPADA') ? 'selected' : '' ?>>OCUPADA</option>
+        </select>
     </div>
-
-    <div class="mb-3">
-        <label class="form-label">Data Saída (Agora)</label>
-        <input type="text" class="form-control" disabled value="<?= date('d/m/Y H:i:s') ?>">
-    </div>
-
-    <div class="mb-3">
-        <label class="form-label">Valor Total (R$)</label>
-        <!-- Aqui você poderia fazer um cálculo automático via JS ou PHP -->
-        <input type="number" step="0.01" name="valor_total" class="form-control" required placeholder="0.00">
-        <small>Insira o valor a ser cobrado.</small>
-    </div>
-
-    <button type="submit" class="btn btn-success">Confirmar Saída e Liberar Vaga</button>
-    <a href="movimentacao.php" class="btn btn-secondary">Cancelar</a>
+    
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="vagas.php" class="btn btn-secondary">Cancelar</a>
 </form>
 
 <?php require("footer.php"); ?>

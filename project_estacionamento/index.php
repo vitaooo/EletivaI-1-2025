@@ -1,50 +1,79 @@
+<?php
+session_start();
+require("conexao.php");
+
+$erro = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM cliente WHERE email = ?");
+        $stmt->execute([$email]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            $_SESSION['acesso'] = true;
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome']; 
+            
+            header("Location: principal.php");
+            exit;
+        } else {
+            $erro = "Email ou senha incorretos!";
+        }
+    } catch (Exception $e) {
+        $erro = "Erro no sistema: " . $e->getMessage();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Safety</title>
+    <title>Login - Vehicle Safety</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<body class="body-in">
 
-<body>
-    <div class="container_principal">
+    <div class="fundo-carros">
+        <div class="papel-rasgado">
+            
+            <div class="login-content">
+                <h1 style="font-family: 'Migra Extrabold', sans-serif; color: var(--header-dark); font-size: 2.5rem; margin-bottom: 10px;">
+                    Vehicle Safety
+                </h1>
+                <p style="margin-bottom: 30px; font-weight: bold; color: #666;">GESTÃO DE ESTACIONAMENTO</p>
 
+                <?php if($erro): ?>
+                    <div class="alert alert-danger" style="margin-bottom: 20px;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> <?= $erro ?>
+                    </div>
+                <?php endif; ?>
 
-        <div id="cabecalhodiv">
-            <div style="justify-self: left;">
-                <h1 class="hcabecalho">Vehicle Safety</h1>
-                <h2 class="hsubtitle">Estacionamentos</h2>
-            </div>
+                <form method="POST">
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required placeholder="seu@email.com">
+                    </div>
 
-            <div style="display: flex; justify-item: center; align-items: center;">
-                <button id="bentrar" ><a href="entrar.php">Entrar</a></button>
-            </div>
-        </div>
-        <hr style="
-    margin-top: -4px;
-    border: 1;
-    border-radius: 10px;
-    ">
+                    <div class="input-group" style="margin-top: 20px;">
+                        <label>Senha</label>
+                        <input type="password" name="senha" required placeholder="******">
+                    </div>
 
-        <section class="center">
-            <div class="secao_bemvindo">
-                <h2 class="secao_titulo">Traga segurança  <br> para os veículos de <br> seu público. </h2>
-                <p class="secao_p">No nosso estacionamento, acreditamos que segurança e eficiência caminham 
-                    juntas para oferecer uma experiência tranquila, rápida e confiável. Por isso, investimos em tecnologias 
-                    modernas e em processos inteligentes que garantem proteção total ao veículo e praticidade aos nossos 
-                    clientes desde a entrada até a saída. </p>
-                <div class="container-pai">
-                    <button class="botao_cadastro" ><a href="cadastro.php">Cadastrar</a></button>
+                    <button type="submit" class="button-s">ENTRAR</button>
+                </form>
+
+                <div class="footer-cad">
+                    Não tem conta? <a href="novo_cliente.php">Cadastre-se</a>
                 </div>
             </div>
-            <div class="secao_imagem">
-                <img src="img/carros-logo.jpg" class="corredor" alt="">
-            </div>
-        </section>
+        </div>
     </div>
-    <script src="script.js"></script>
-</body>
 
+</body>
 </html>

@@ -1,31 +1,31 @@
 <?php
-    require("conexao.php");
-    $erro = "";
+require("conexao.php");
+$erro = "";
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $nome = $_POST['nome'];
-        $cpf = $_POST['cpf'];
-        $telefone = $_POST['telefone'];
-        $email = $_POST['email'];
-        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Criptografa a senha
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $nome = $_POST['nome'];
+    $cpf = $_POST['cpf'];
+    $telefone = $_POST['telefone'];
+    $email = $_POST['email'];
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
+    
+    try{
+        $sql = "INSERT INTO cliente (nome, cpf, telefone, email, senha) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
         
-        try{
-            $sql = "INSERT INTO cliente (nome, cpf, telefone, email, senha) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $pdo->prepare($sql);
-            
-            if($stmt->execute([$nome, $cpf, $telefone, $email, $senha])){
-                header('location: clientes.php?cadastro=true');
-                exit; 
-            } else {
-                header('location: clientes.php?cadastro=false');
-                exit;
-            }
-        }catch(\Exception $e){
-            $erro = "Erro ao salvar (verifique se CPF ou Email já existem): " . $e->getMessage();
+        if($stmt->execute([$nome, $cpf, $telefone, $email, $senha])){
+            header('location: clientes.php?cadastro=true');
+            exit; 
+        } else {
+            header('location: clientes.php?cadastro=false');
+            exit;
         }
+    }catch(\Exception $e){
+        $erro = "Erro ao salvar (verifique se CPF ou Email já existem): " . $e->getMessage();
     }
+}
 
-    require("cabecalho.php");
+require("cabecalho.php");
 ?>
 
 <div class="header-flex">

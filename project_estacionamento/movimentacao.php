@@ -2,8 +2,6 @@
 require("conexao.php");
 require("cabecalho.php");
 
-// Busca movimentações com dados do veículo e da vaga
-// Ordenado por data de entrada (mais recentes primeiro)
 try {
     $sql = "SELECT m.*, v.placa, v.modelo, vg.codigo as codigo_vaga 
             FROM movimentacao m 
@@ -45,7 +43,6 @@ try {
     <tbody>
         <?php foreach($movimentacoes as $m): ?>
             <?php 
-                // Verifica se está em aberto (data_saida é NULL)
                 $em_aberto = empty($m['data_saida']); 
             ?>
             <tr>

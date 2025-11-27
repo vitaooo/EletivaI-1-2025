@@ -2,9 +2,8 @@
 require("conexao.php");
 
 $cliente = null;
-$erro_msg = null; // Variável para guardar erros de exclusão
+$erro_msg = null;
 
-// 1. Processa Exclusão (LÓGICA VEM PRIMEIRO)
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id = $_POST['id'];
     try {
@@ -17,13 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit;
         }
     } catch (\Exception $e) {
-        // Se der erro (ex: tem carro vinculado), guardamos a mensagem para exibir depois do cabeçalho
         $erro_msg = "Erro ao excluir: O cliente possui veículos ou movimentações vinculadas.";
     }
 }
 
-// 2. Carrega dados do cliente (Para exibir no formulário)
-// Verificamos se tem ID no GET (URL) ou se veio do POST (caso tenha dado erro na exclusão)
 $id_busca = $_GET['id'] ?? $_POST['id'] ?? null;
 
 if ($id_busca) {
@@ -36,7 +32,6 @@ if ($id_busca) {
     }
 }
 
-// 3. AGORA SIM, carregamos o visual
 require("cabecalho.php");
 ?>
 
@@ -44,7 +39,6 @@ require("cabecalho.php");
     <h1 style="color: black;">Consultar Cliente</h1>
 
     <?php 
-    // Se houver mensagem de erro da exclusão, mostramos aqui
     if ($erro_msg) {
         echo "<div class='alert alert-danger'>$erro_msg</div>";
     }
