@@ -185,9 +185,11 @@ body {
 /* cadastro */
 
 .body-cas {
-  display: flex;
-  min-height: 100vh;
-  background-color: #e1dfd4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden; /* Remove barras de rolagem */
+    background-color: #36454f; /* Cor de fundo caso a imagem falhe */
 }
 
 .card-sprint {
@@ -872,4 +874,109 @@ textarea {
 
 .content-wrapper {
     padding: 30px;
+}
+
+.fundo-carros {
+    width: 100%;
+    height: 100%;
+    background: url('img/carros-login.png') no-repeat right; 
+    background-size: cover;
+    display: flex;
+    align-items: right; 
+}
+
+.sombra-papel {
+    height: 100%;
+    width: 75%; 
+    min-width: 450px;
+}
+
+.papel-rasgado {
+    background-color: #E6E8E3; 
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 40px; /* Espaço para o texto não bater no rasgo */
+    
+    /* ESTA É A MÁGICA DO RASGO: Cria o zigue-zague na direita */
+    clip-path: polygon(
+        0% 0%, 100% 0%, 
+        98% 5%, 100% 10%, 98% 15%, 100% 20%, 
+        98% 25%, 100% 30%, 98% 35%, 100% 40%, 
+        98% 45%, 100% 50%, 98% 55%, 100% 60%, 
+        98% 65%, 100% 70%, 98% 75%, 100% 80%, 
+        98% 85%, 100% 90%, 98% 95%, 100% 100%, 
+        0% 100%
+    );
+}
+
+/* 4. Estilo do Conteúdo do Formulário */
+.login-content {
+    width: 80%;
+    max-width: 380px;
+}
+
+/* Ajustes nos Inputs para combinar com o fundo bege */
+.papel-rasgado .input-group {
+    margin-bottom: 15px;
+}
+
+.papel-rasgado label {
+    font-family: "Bebas Neue", sans-serif;
+    color: #4A6A64; /* Verde escuro */
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.papel-rasgado input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #6c8c7d; /* Linha verde embaixo */
+    border-radius: 0;
+    padding: 10px 5px;
+    color: #333;
+    font-weight: bold;
+    outline: none;
+    width: 100%;
+}
+
+.papel-rasgado input::placeholder {
+    color: #999;
+    font-weight: normal;
+}
+
+/* Botão de Cadastrar */
+.papel-rasgado .button-s {
+    background-color: transparent;
+    border: 2px solid #4A6A64;
+    color: #4A6A64;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.papel-rasgado .button-s:hover {
+    background-color: #4A6A64;
+    color: white;
+}
+
+/* Footer (link Entrar) */
+.footer-cad {
+    text-align: center;
+    margin-top: 15px;
+    color: #4A6A64;
+}
+
+.footer-cad a {
+    background-color: #36454f;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    margin-left: 5px;
 }

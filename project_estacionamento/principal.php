@@ -1,100 +1,137 @@
 <?php
     require("cabecalho.php");
-    require("conexao.php");
+    // require("conexao.php"); // Certifique-se de que este arquivo existe e conecta ao banco 'estacionamento_db'
+
+    // Simulação de conexão caso você não tenha o arquivo pronto para testar
+    if (!isset($pdo)) {
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=estacionamento_db", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $e) {
+            echo "Erro de conexão: " . $e->getMessage();
+            exit;
+        }
+    }
 
     try {
+        // SQL Adaptado para o banco de estacionamento
+        // Une Movimentação -> Veículo -> Cliente e Movimentação -> Vaga
         $sql = "SELECT 
-                    o.id AS org_id, 
-                    o.nome AS org_nome,
-                    c.id AS camp_id, 
-                    c.nome AS camp_nome,
-                    p.id AS part_id,
-                    p.placar_casa,
-                    p.placar_visitante,
-                    t1.nome AS time_casa,
-                    t2.nome AS time_visitante
-                FROM partida p
-                INNER JOIN campeonato c ON p.campeonato_id = c.id
-                INNER JOIN organizador o ON c.organizador_id = o.id
-                INNER JOIN equipe t1 ON p.time_casa_id = t1.id
-                INNER JOIN equipe t2 ON p.time_visitante_id = t2.id
-                ORDER BY p.id DESC";
+                    m.id AS mov_id,
+                    m.data_entrada,
+                    m.data_saida,
+                    m.valor_total,
+                    v.placa,
+                    v.modelo,
+                    c.nome AS nome_cliente,
+                    vg.codigo AS codigo_vaga,
+                    vg.status AS status_vaga
+                FROM movimentacao m
+                INNER JOIN veiculo v ON m.veiculo_id = v.id
+                INNER JOIN cliente c ON v.cliente_id = c.id
+                INNER JOIN vaga vg ON m.vaga_id = vg.id
+                ORDER BY m.id DESC";
 
         $stmt = $pdo->query($sql);
         $dados = $stmt->fetchAll();
 
     } catch(\Exception $e) {
-        echo "Erro: ".$e->getMessage();
+        echo "<p class='text-danger'>Erro ao carregar dados: ".$e->getMessage() . "</p>";
+        $dados = []; // Garante array vazio para não quebrar o foreach
     }
 
-    if (isset($_GET['cadastro']) && $_GET['cadastro']){
-        echo "<p class='text-success'>Cadastro realizado!</p>";
-    } else if (isset($_GET['cadastro']) && !$_GET['cadastro']) {
-        echo "<p class='text-danger'>Erro ao cadastrar!</p>";
+    // Mensagens de Feedback (Cadastro/Edição/Exclusão)
+    if (isset($_GET['cadastro'])) {
+        echo $_GET['cadastro'] ? "<p class='text-success'>Operação realizada com sucesso!</p>" : "<p class='text-danger'>Erro ao realizar operação!</p>";
     }
-
-    if (isset($_GET['editar']) && $_GET['editar']){
-      echo "<p class='text-success'>Registro editado!</p>";
-    } else if (isset($_GET['editar']) && !$_GET['editar']) {
-      echo "<p class='text-danger'>Erro ao editar!</p>";
-    }
-    
-    if (isset($_GET['excluir']) && $_GET['excluir']){
-      echo "<p class='text-success'>Registro excluído!</p>";
-    } else if (isset($_GET['excluir']) && !$_GET['excluir']) {
-      echo "<p class='text-danger'>Erro ao excluir!</p>";
+    if (isset($_GET['excluir'])) {
+        echo $_GET['excluir'] ? "<p class='text-success'>Registro excluído!</p>" : "<p class='text-danger'>Erro ao excluir!</p>";
     }
 ?>
 
-<table class="table table-hover table-striped">
-    <thead>
-        <tr>
-            <th colspan="3" style="color: black;">Dados registrados</th>
-            <th class="no-print">
-                <button style="color: black;" class="btn btn-secondary" onclick="window.print()">
-                    Imprimir
-                </button>
-            </th>
-        </tr>
-        <tr>
-            <th style="color: black; text-align: left;">Organizador (ID / Nome)</th>
-            <th style="color: black; text-align: left;">Campeonato (ID / Nome)</th>
-            <th style="color: black; text-align: left;">Partida (ID / Detalhes)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($dados as $d): ?>
-        <tr>
-            <td>
-                <b style="color: black;">ID:</b>
-                <b style="color: black;"><?= $d['org_id'] ?></b>  
-                <br>
-                <b style="color: black;"><?= $d['org_nome'] ?></b> 
-            </td>
+<!-- CONTEÚDO DA IMAGEM (Texto Promocional) -->
+<section style="margin-bottom: 30px;">
+    <h2 style="color: #4a6356; margin-bottom: 10px;">Estacionamento Inteligente: Escolha sua vaga automotiva.</h2>
+    <p style="font-size: 1.1rem; line-height: 1.5; margin-bottom: 15px;">
+        Imagine que, ao invés de buscar ansiosamente por uma vaga em um estacionamento lotado, 
+        você pudesse escolher e reservar seu espaço com a mesma facilidade e antecedência que seleciona uma poltrona nos cinemas.
+    </p>
+    <p style="font-size: 1.1rem; line-height: 1.5;">
+        Essa é a proposta dos <strong>Sistemas de Estacionamento Inteligente</strong> com reserva de vagas e 
+        reconhecimento automático de placas, que combinam conveniência digital e automação para transformar a experiência de estacionar.
+    </p>
+</section>
 
-            <td>
-                <b style="color: black;">ID:</b> 
-                <b style="color: black;"><?= $d['camp_id'] ?> </b> 
-                <br>
-                <b style="color: black;"><?= $d['camp_nome'] ?></b> 
-            </td>
+<!-- TABELA DE DADOS (Substituindo a antiga tabela de campeonatos) -->
+<div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <h3 style="color: #4a6356;">Movimentações Recentes</h3>
+        <button class="btn btn-secondary" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Imprimir Relatório
+        </button>
+    </div>
 
-            <td>
-                <b style="color: black;">ID:</b>
-                <b style="color: black;"><?= $d['part_id'] ?></b> 
-                <br>
-                <b style="color: black;"><?= $d['time_casa'] ?></b>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vaga</th>
+                <th>Veículo (Placa / Modelo)</th>
+                <th>Cliente</th>
+                <th>Entrada</th>
+                <th>Saída / Status</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (count($dados) > 0): ?>
+                <?php foreach($dados as $d): ?>
+                <tr>
+                    <td>
+                        <b style="font-size: 1.2rem;"><?= $d['codigo_vaga'] ?></b>
+                    </td>
+                    
+                    <td>
+                        <b><?= strtoupper($d['placa']) ?></b><br>
+                        <small><?= $d['modelo'] ?></small>
+                    </td>
 
-                <strong style="color: black;"><?= $d['placar_casa'] ?></strong>
-                <strong style="color: black;">x</strong> 
-                <strong style="color: black;"><?= $d['placar_visitante'] ?></strong> 
-                <b style="color: black;"><?= $d['time_visitante'] ?></b> 
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+                    <td>
+                        <?= $d['nome_cliente'] ?>
+                    </td>
 
-<?php
-    require("footer.php");
-?>
+                    <td>
+                        <?= date('d/m/Y H:i', strtotime($d['data_entrada'])) ?>
+                    </td>
+
+                    <td>
+                        <?php if ($d['data_saida']): ?>
+                            <?= date('d/m/Y H:i', strtotime($d['data_saida'])) ?>
+                        <?php else: ?>
+                            <span style="color: green; font-weight: bold;">EM USO</span>
+                        <?php endif; ?>
+                    </td>
+
+                    <td>
+                        <?php if ($d['valor_total']): ?>
+                            R$ <?= number_format($d['valor_total'], 2, ',', '.') ?>
+                        <?php else: ?>
+                            -
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 20px;">
+                        Nenhuma movimentação registrada no momento.
+                    </td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+
+<!-- Fechamento da div container aberta no cabecalho -->
+</div> 
+</body>
+</html>
