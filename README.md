@@ -8,6 +8,22 @@
 
 [Xampp/Lampp](https://www.apachefriends.org/pt_br/download.html)
 
+## Abrir o Xampp e rodar o mysql e o apache web server: 
+
+![Lampp](./lampp.png)
+
+### Após ligar os dois serviços, entre nessa porta pelo seu navegador:
+
+`http://localhost/phpmyadmin/`
+
+*Copie tudo que tem nos arquivos 'banco.sql' e cole na aba SQL*
+
+![Banco](./sql.png)
+
+*Logo após clique em 'executar'*
+
+![Executar Comando](./execute.png)
+
 ~~~Para clonar o repositório:
 git clone https://github.com/vitaooo/EletivaI-1-2025.git
 ~~~
@@ -20,6 +36,6 @@ ex: cd sistema_campeonato
 php -S localhost:8080
 ~~~
 
-##Abrir o Xampp e rodar o mysql e o apache web server:
+*Após esses passos é somente entrar na porta definida*
 
-![Lampp](./lampp.png)
+`localhost:8080/entrar.php` ou `localhost:8080/index.php`
