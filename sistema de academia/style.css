@@ -1,0 +1,91 @@
+/* Fonts (Mantenha as importações de fonte originais se tiver os arquivos) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #007bff; /* Azul Principal */
+  --primary-dark: #0056b3;  /* Azul Escuro */
+  --accent-color: #00a8ff;  /* Azul Claro */
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --bg-dark: #1a1a1a;
+  --bg-light: #f4f6f9;
+}
+
+body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+
+/* Login e Cadastro */
+.body-in, .body-cas {
+    background-color: var(--bg-dark);
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.login-card, .card-sprint {
+    background-color: black; width: 100%; max-width: 500px; padding: 50px;
+    border-radius: 20px; box-shadow: 0 0 20px rgba(0,123,255,0.2);
+    border: 1px solid var(--primary-dark);
+}
+.login-title {
+    color: white; text-align: center; font-family: "Bebas Neue", sans-serif; font-size: 2rem;
+    border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px;
+}
+.login-title span { color: var(--primary-color); }
+.input-group label {
+    display: block; background-color: var(--primary-color); color: white;
+    padding: 8px; border-radius: 5px; text-align: center; margin-bottom: 5px;
+}
+.input-group input {
+    width: 100%; padding: 10px; border: 2px solid var(--primary-color);
+    background: #222; color: white; border-radius: 5px;
+}
+button.button-s, .btn-salvar {
+    width: 100%; padding: 12px; background-color: var(--primary-color);
+    color: white; border: none; border-radius: 5px; font-size: 1.1rem;
+    cursor: pointer; margin-top: 15px; font-weight: bold;
+}
+button:hover { background-color: var(--primary-dark); }
+.footer, .semconta { text-align: center; color: white; margin-top: 20px; }
+.footer a { color: var(--accent-color); }
+
+/* Sidebar e Layout Principal */
+.app-container { display: flex; height: 100vh; width: 100%; overflow: hidden; }
+.sidebar {
+    width: 250px; background-color: var(--primary-dark);
+    display: flex; flex-direction: column; padding-top: 20px;
+}
+.sidebar-menu { list-style: none; padding: 0; width: 100%; }
+.sidebar-menu a {
+    display: flex; align-items: center; padding: 15px 20px;
+    color: rgba(255,255,255,0.8); font-weight: bold; transition: 0.3s;
+}
+.sidebar-menu a:hover { background-color: rgba(0,0,0,0.2); color: white; }
+.sidebar-menu a.active {
+    background-color: white; color: var(--primary-dark);
+    border-left: 5px solid var(--accent-color);
+}
+.sidebar-menu i { margin-right: 15px; width: 25px; text-align: center; }
+
+.main-content { flex: 1; background-color: var(--bg-light); display: flex; flex-direction: column; overflow-y: auto; }
+.top-header {
+    background-color: white; color: var(--primary-dark); padding: 0 40px;
+    height: 60px; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #ddd;
+}
+
+/* Tabelas e Conteúdo */
+.content-wrapper { padding: 30px; }
+.header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.btn { padding: 10px 20px; border-radius: 5px; color: white; font-weight: bold; display: inline-block; cursor: pointer; border: none; }
+.btn-success { background-color: var(--primary-color); }
+.btn-danger { background-color: #dc3545; }
+.btn-primary { background-color: #17a2b8; }
+.btn-secondary { background-color: #6c757d; }
+
+.styled-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+.styled-table thead tr { background-color: var(--primary-dark); color: white; text-align: left; }
+.styled-table th, .styled-table td { padding: 15px; border-bottom: 1px solid #eee; color: #333; }
+.styled-table tbody tr:hover { background-color: #f1f1f1; }
+
+/* Utility */
+.text-success { color: #28a745; font-weight: bold; }
+.text-danger { color: #dc3545; font-weight: bold; }
+.form-control { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; }
