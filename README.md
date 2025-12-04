@@ -4,8 +4,9 @@
 
 ### Para rodar o(s) projeto(s) siga esses passos:
 
+### baixe o Xampp ou Lampp
 
-
+[Xampp/Lampp](https://www.apachefriends.org/pt_br/download.html)
 
 ~~~Para clonar o repositório:
 git clone https://github.com/vitaooo/EletivaI-1-2025.git
@@ -18,3 +19,6 @@ ex: cd sistema_campeonato
 ~~~Rodar o projeto PHP
 php -S localhost:8080
 ~~~
+
+##Abrir o Xampp e rodar o mysql e o apache web server:
+
