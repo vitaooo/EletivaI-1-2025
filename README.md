@@ -22,3 +22,4 @@ php -S localhost:8080
 
 ##Abrir o Xampp e rodar o mysql e o apache web server:
 
+![Lampp](./lampp.png)
